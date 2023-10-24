@@ -10,7 +10,13 @@
             $id = $row["id"];
             $title = $row["title"];
         
-            echo "$id <a href='detail.php'>$title</a><br>";
+            
+
+            echo $id."."."<a href='detail.php'>$title</a>
+                <button><a href='update.php?updateid=$id'>수정</a></button>
+                <button><a href='delete.php?deleteid=$id'>삭제</a></button><br>";
+            
+
 
         }
 
