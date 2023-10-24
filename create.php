@@ -5,7 +5,7 @@
     if (isset($_POST["submit"])) {
 
         $title = $_POST["title"];
-        
+
         $content = $_POST["content"];
 
         $sql = "INSERT INTO `crud` (title, content) VALUES ('$title', '$content')";
@@ -14,7 +14,8 @@
 
         if ($result) {
 
-            echo "<script>alert('데이터 저장 성공'); window.location = 'list.php';</script>";
+            echo "<script>alert('데이터 저장 성공');</script>";
+            echo "<script>setTimeout(function() { window.location.href = 'list.php'; }, 100);</script>";
 
         } else {
 
