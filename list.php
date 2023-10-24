@@ -12,8 +12,11 @@
 <body>
 
     <h1>글 목록 페이지</h1>
+    <button>
+    <a href="create.php">글쓰기</a>
+    </button>
     <br>
-
+    <br>
     <?php
     $sql = "SELECT * FROM `crud`";
     $result = mysqli_query($conn, $sql);
@@ -31,11 +34,8 @@
         }
     }
     ?>
-    <br><br><br><br><br><br>
 
-    <button>
-    <a href="create.php">글쓰기</a>
-    </button>
+   
 
     
 </body>

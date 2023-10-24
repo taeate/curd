@@ -42,7 +42,7 @@
         제목<input type="text" name="title" >
         <br>
         내용<input type="text" name="content" >
-        <input type="submit" name="submit">
+        <input type="submit" name="submit" value="수정">
     </form>
     <br>
     <br>
