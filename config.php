@@ -13,10 +13,6 @@
     if ($conn->connect_error){
 
         die("연결실패". $conn->connect_error);
-
-    }else {
-
-     echo "[DB 연결성공!!]<br><br>";
-
+        
     }
 ?>
