@@ -1,33 +1,54 @@
 <?php
-    include("config.php");
+include("config.php");
 
-    // form 정보 수정
+if (isset($_GET["updateid"])) {
+
     $id = $_GET["updateid"];
 
-    if (isset($_POST["submit"])) {
 
-        $title = $_POST["title"];
+    // 데이터베이스에서 해당 데이터 가져오기
+    $sql = "SELECT title, content FROM crud WHERE id = $id";
 
-        $content = $_POST["content"];
+    $result = mysqli_query($conn, $sql);
 
-        $sql = "UPDATE `crud` SET `title` = '$title', `content` = '$content' WHERE `id` = $id";
+    if ($result) {
 
+        $row = mysqli_fetch_assoc($result);
 
-        $result = mysqli_query($conn, $sql);
+        $title = $row['title'];
 
-        if ($result) {
+        $content = $row['content'];
 
-            echo "<script>alert('글이 수정 되었습니다.');</script>";
-            echo "<script>setTimeout(function() { window.location.href = 'list.php'; }, 100);</script>";
+    } else {
 
-        } else {
+        echo "데이터 검색 실패: " . mysqli_error($conn);
 
-            echo "데이터 저장 실패: " . mysqli_error($conn);
-
-        }
     }
-?>
+}
 
+if (isset($_POST["submit"])) {
+
+    $title = $_POST["title"];
+
+    $content = $_POST["content"];
+
+
+    $sql = "UPDATE `crud` SET `title` = '$title', `content` = '$content' WHERE `id` = $id";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+
+        echo "<script>alert('글이 수정 되었습니다.');</script>";
+        echo "<script>setTimeout(function() { window.location.href = 'list.php'; }, 100);</script>";
+
+    } else {
+
+        echo "데이터 저장 실패: " . mysqli_error($conn);
+        
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,17 +58,15 @@
     <title>Document</title>
 </head>
 <body>
-
     <form action="" method="POST">
-        제목<input type="text" name="title" >
+        제목<input type="text" name="title" value="<?php echo isset($title) ? $title : ''; ?>">
         <br>
-        내용<input type="text" name="content" >
+        내용<input type="text" name="content" value="<?php echo isset($content) ? $content : ''; ?>">
         <input type="submit" name="submit" value="수정">
     </form>
     <br>
     <br>
     <br>
     <a href="list.php">리스트</a>
-    
 </body>
 </html>
